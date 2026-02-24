@@ -1,0 +1,316 @@
+\documentclass{scrartcl}
+
+%This template is based on the DFG rtf form (see Readme on GitHub for last accessed date, and version in the header of the compiled PDF)
+%
+%Author: Martin Hoelzer, hoelzer.martin@gmail.com
+%
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{proposal}
+
+% final version?
+\setboolean{finalcompile}{false}
+
+% show DFG template version the current LaTeX template is based on in the header. Will be deactivated when 'finalcompile' is set 'true'
+\ifthenelse{\boolean{finalcompile}}{}{\ihead*{DFG-form 53.01 - 03/25}}
+
+% all config is done in Header.tex
+\input{Header.tex}
+
+% language dependent
+% change labels, e.g.:
+\setkomafont{paragraph}{\normalfont\itshape}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  TITLE PAGE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\applicants}{Marc Rußwurm, University of Bonn \\ Shungudzemwoyo Garaba, Carl von Ossietzky Universität Oldenburg}
+\newcommand{\project}{PLASTRACK – Methods for Integrated Multi-Scale Monitoring of Riverine Plastic Litter}
+
+% add bib entries here that you want to highlight in the text and publication list (bold)
+% \addtocategory{important}{}
+
+\begin{document}
+\pagestyle{empty}
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% A NICE TITLE PAGE - OPTIONAL BC NOT IN THE ORIGINAL DFG TEMPLATE
+% if you use the title page, set the \setcounter{page}{0} above!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \input{title_page}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  MAIN MATTER  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\pagestyle{plain}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% For first-time proposals, please also note the following: Please provide a
+% concise description of your previous postgraduate training and research,
+% highlighting your abilities and demonstrating that you are capable of carrying
+% out the proposed project. Describe your scientific track record to date,
+% mentioning research topics that you've worked on so far. Previous scientific
+% accomplishments must not be directly related to the project.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  PROJECT DESCRIPTION - PROJECT PROPOSALS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sections 1-3 must not exceed 17 pages in total.
+{\raggedright{} \normalsize \bfseries 
+	Project Description -- Project Proposals \newline \par
+	\applicants{} \newline \par
+	\project{} \par
+	\rule{\textwidth}{0.5pt} \par
+	%Project Description
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  STATE OF THE ART AND PRELIMINARY WORK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Starting Point}
+\label{sec:work-report}
+
+Despite decades of awareness and policy activity, we still lack a reliable, comparable, and uncertainty-quantified estimate of how much \emph{macrolitter} (including macroplastics) is transported by major European rivers. Even for the Rhine---one of the best-instrumented river systems worldwide---recent monitoring implies a striking inconsistency: a long-term interception study near Cologne estimates an annual macrolitter transport of roughly \(\sim\)3{,}000--4{,}700\,t\,yr\(^{-1}\) towards the North Sea \citep{gnann2026river}, whereas downstream observational estimates for floating plastic transport in the Rhine--Meuse delta near Rotterdam are far lower (on the order of \(\sim\)65\,t\,yr\(^{-1}\)), with strong variability driven by hydrology \citep{van2022hydrology}. While part of this difference can arise from retention, (temporary) storage, and fragmentation, its magnitude points to a central bottleneck: \emph{data uncertainty} caused by heterogeneous methods, limited temporal coverage, and monitoring technologies that are difficult to scale and harmonize across sites. Crucially, the next generation of sensing---continuous RGB camera streams, airborne spectroscopy, and high-revisit satellite imagery---does not solve this bottleneck by itself: it shifts the limiting factor toward \emph{data analysis}, because the volume and complexity of imagery makes manual interpretation infeasible and inconsistent. Addressing the Rhine discrepancy therefore requires \emph{AI-native monitoring pipelines} that transform raw imagery into comparable indicators with traceable uncertainty.
+
+This uncertainty matters because rivers are widely recognized as a major pathway transporting mismanaged plastic waste from land into aquatic and marine environments, yet reported global inputs still span large ranges. Global synthesis studies estimate that rivers deliver on the order of \(\sim\)1--3\,million tonnes of plastic per year to the ocean, with emissions concentrated in a subset of river systems \citep{lebreton2017river,meijer2021more}. At the same time, scenario studies project that without effective action, annual plastic emissions to aquatic systems could grow substantially over the coming decades \citep{pew2020breaking}. Translating these global narratives into actionable mitigation requires dependable, long-term, and spatially resolved observations at the river-basin scale---precisely where today’s monitoring remains weakest and where automated, scalable analysis becomes indispensable.
+
+The Rhine basin is an ideal methodological testbed for closing this gap. First, it combines high societal relevance with comparatively low macrolitter loads, meaning that any methodology robust enough for the Rhine is likely transferable to more polluted systems (where detection is often easier). Second, the basin already hosts active monitoring infrastructure, including continuous interception and classification efforts supported by citizen scientists \citep{gnann2026river} and long-duration transport studies in the Rhine--Meuse delta \citep{van2022hydrology}. Third, the Rhine is embedded in a dense Earth-observation ecosystem (frequent satellite coverage, airborne campaigns, and commercial constellations), enabling a principled investigation of how to integrate observations from ground, air, and space---\emph{provided} that robust learning-based methods exist to fuse, calibrate, and quality-control heterogeneous data streams.
+
+However, existing approaches remain fragmented across scales, in part because the analysis burden grows faster than sensing capability. On the ground, standard monitoring still relies heavily on manual visual counting and localized campaigns, which are labour-intensive and difficult to sustain at high frequency over many sites. Bridge-mounted cameras combined with deep learning can automate detection and yield continuous time series \citep{vanlieshout2020automated}, and our own work demonstrates object-detection pipelines under realistic river conditions and confounders \citep{hagenbeek5841770exploring}. Yet converting detections into comparable flux estimates remains uncertainty-dominated \citep{vriend2025uncertainties}, motivating harmonized workflows \citep{vanemmerik2023harmonized} and, critically, AI methods that propagate uncertainty from detection to flux and basin-scale indicators.
+
+From an Earth-observation perspective, remote sensing offers the unique opportunity to extend monitoring beyond isolated sites and campaigns, but it faces two persistent challenges: (i) detectability against water and complex backgrounds and (ii) consistent ground validation. Airborne spectroscopy and spectral studies demonstrate diagnostic plastic features in the visible-to-SWIR range, providing the physical basis for multi-/hyperspectral sensing approaches \citep{garaba2018airborne,garaba2020uvswir}. Recent work further shows that riverine litter can be detected and quantified from very fine pixel multispectral satellite imagery with attention to sensor characteristics and transferability across sites \citep{garaba2024riverine}. However, turning these opportunities into operational monitoring requires sensor-aware AI pipelines that handle rare events, domain shift, and cross-sensor fusion, anchored in validated spectral reference data and uncertainty-aware calibration.
+
+\textbf{PLASTRACK} addresses this frontier by developing \emph{methods for integrated multi-scale monitoring of riverine macrolitter} in the Rhine basin, combining (1) RGB imagery from fixed bridge cameras and ship-mounted cameras, with (2) airborne multi- and hyperspectral sensing, and (3) satellite multi- and hyperspectral data streams (e.g., Sentinel-2, Planet, EnMAP). A central premise of PLASTRACK is that these sensing modalities only become a coherent monitoring system through AI: scalable detection and classification models, cross-sensor calibration informed by optical evidence, and uncertainty propagation that translates heterogeneous imagery into comparable basin-scale indicators and flux estimates.
+
+\subsection*{State of the art and preliminary work}
+
+\subsection*{State of the art and preliminary work}
+
+PLASTRACK builds on complementary expertise of the PIs: Ru{\ss}wurm contributes AI methods for scalable image understanding, cross-sensor fusion, and uncertainty-aware monitoring products, while Garaba contributes remote-sensing expertise on spectral detectability, imaging spectroscopy, and sensor-aware validation in aquatic environments. External partners provide in-kind infrastructure that strengthens feasibility and benchmarking: the Plastic Litter Project (PLP, Lesbos) contributes established protocols and multi-sensor field experience for controlled validation campaigns \citep{topouzelis2019detection,papageorgiou2022sentinel2}, and Wageningen University (van Emmerik) contributes operational river-plastic monitoring know-how, harmonization concepts, and training opportunities through existing camera-based workflows \citep{vanlieshout2020automated,vanemmerik2023harmonized}.
+
+\paragraph{Ground sampling campaigns and validation.}
+Controlled ground-/sea-truth campaigns remain the gold standard to characterize detectability limits, develop spectral libraries, and validate sensing products for floating litter. The Plastic Litter Project (PLP) exemplifies this approach by deploying artificial targets and synchronizing in-situ, UAV, and Sentinel-2 acquisitions to benchmark separability of plastics from other floating materials \citep{topouzelis2019detection,papageorgiou2022sentinel2}. Follow-up work quantified marginal detectability thresholds across sensors and target sizes, demonstrating that observability depends strongly on sub-pixel abundance and environmental conditions \citep{papageorgiou2024marginal,biermann2020finding}. A remaining methodological gap for rivers is to translate campaign-derived observability envelopes into \emph{sensor-aware} processing chains that generalize across sites and seasons; this requires spectral reference data, airborne evidence, and validation protocols that connect optical signatures to what multi-/hyperspectral sensors can reliably observe \citepPIGaraba{garaba2018airborne,garaba2020uvswir}. These validated reference points are also essential for training and benchmarking AI models under rare-event conditions and changing backgrounds, enabling scalable monitoring products across large EO archives \citepPIRusswurm{russwurm2023large}.
+
+\paragraph{Bridge and proximal imaging for continuous flux estimates.}
+Bridge-based camera monitoring has matured into an operationally attractive approach for high-frequency observations at strategic cross-sections. Deep-learning-based detection from fixed cameras has been demonstrated as a scalable alternative to manual counting, enabling continuous time series of floating macrolitter occurrence \citep{vanlieshout2020automated}. However, recent analyses stress that observational uncertainty, site-specific visibility, and protocol choices can dominate errors when converting detections and counts into fluxes \citep{vriend2025uncertainties}, motivating harmonized workflows to translate heterogeneous camera campaigns into comparable estimates across rivers and time \citep{vanemmerik2023harmonized}. The key frontier is to make proximal streams transferable and uncertainty-calibrated and to connect them quantitatively to EO-based screening; recent work demonstrates how object detection can be grounded in realistic river conditions and confounders (e.g., vegetation and complex backgrounds), providing a basis for robust deployment and cross-site generalization (Fig.~\ref{fig:plastichyacinths}) \citepPIRusswurm{hagenbeek5841770exploring}.
+
+\paragraph{Earth observation and imaging spectroscopy for synoptic monitoring.}
+Remote sensing provides the unique opportunity to extend monitoring beyond isolated sites, yet it faces two persistent obstacles: detectability against complex backgrounds and limited, consistent ground validation. Airborne spectroscopy and spectral studies indicate diagnostic plastic features in the visible-to-SWIR range, motivating the use of multi-/hyperspectral sensing (including EnMAP) for detection and material discrimination \citepPIGaraba{garaba2018airborne,garaba2020uvswir}. Satellite-based work outlines both potentials and limits of optical debris detection, highlighting sensitivity to viewing geometry, scene composition, and sub-pixel mixing \citep{martinezvicente2019measuring,hu2021remote}. Recent advances further demonstrate that riverine litter can be monitored from fine-pixel multispectral satellite imagery, underscoring the value of sensor-aware methodologies and transfer studies across environments \citepPIGaraba{garaba2024riverine}. Converting these capabilities into operational basin-scale products requires AI pipelines that handle rare events and domain shift and that fuse EO indicators with proximal and in-situ measurements; scalable learning-based monitoring has been shown to turn large EO archives into repeatable, spatially explicit products for marine debris and riverine hotspot screening \citepPIRusswurm{russwurm2023large,perez2025scalable}.
+
+\paragraph{Deployed catchments as instrumented observatories.}
+Interception-based systems provide two critical functions: physical capture for composition and mass conversion, and continuous time series that are otherwise rare in large rivers. A prominent example is the long-term Rhine monitoring near Cologne, combining interception with classification and enabling annual macrolitter transport estimates and source attribution \citep{gnann2026river}. Deployed cleanup technologies increasingly pair capture with diagnostics, but peer-reviewed evidence remains fragmented and often complemented by technical reporting \citep{oceancleanup2026smartriversurvey}. Conceptually, the field is shifting from one-off device demonstrations to treating interception sites as instrumented observatories that can anchor calibration and validation for camera- and EO-based methods, including uncertainty propagation from detections to flux and mass-balance reasoning. In an AI-native monitoring stack, such observatories provide the reference points needed to calibrate cross-sensor models and to reconcile synoptic EO indicators with local flux measurements.
+
+Taken together, the literature provides strong building blocks at each scale, but it still lacks an \emph{AI-native, uncertainty-aware multi-sensor framework} that fuses campaigns, proximal imaging, interception observatories, and EO into harmonized basin-scale indicators and flux estimates. PLASTRACK is positioned to close this gap by combining sensor-aware remote-sensing validation and spectroscopy \citepPIGaraba{garaba2018airborne,garaba2020uvswir,garaba2024riverine} with scalable AI methods for detection, transfer, and operationalization across large image archives \citepPIRusswurm{russwurm2023large,perez2025scalable,van2025samselect,maathuis5779542exploring}.
+
+%PLASTRACK builds on complementary expertise of the PIs: Ru{\ss}wurm contributes AI methods for scalable image understanding, cross-sensor fusion, and uncertainty-aware monitoring products, while Garaba contributes remote-sensing expertise on spectral detectability, imaging spectroscopy, and sensor-aware validation in aquatic environments. External partners provide in-kind infrastructure that strengthens feasibility and benchmarking: the Plastic Litter Project (PLP, Lesbos) contributes established protocols and multi-sensor field experience for controlled validation campaigns \citep{topouzelis2019detection,papageorgiou2022sentinel2}, and Wageningen University (van Emmerik) contributes operational river-plastic monitoring know-how, harmonization concepts, and training opportunities through existing camera-based workflows \citep{vanlieshout2020automated,vanemmerik2023harmonized}.
+
+%\paragraph{Ground sampling campaigns and validation.}
+%Controlled ground-/sea-truth campaigns remain the gold standard to characterize detectability limits, develop spectral libraries, and validate sensing products for floating litter. The Plastic Litter Project (PLP) exemplifies this approach by deploying artificial targets and synchronizing in-situ, UAV, and Sentinel-2 acquisitions to benchmark separability of plastics from other floating materials \citep{topouzelis2019detection,papageorgiou2022sentinel2}. Follow-up work has quantified marginal detectability thresholds across sensors and target sizes, demonstrating that observability depends strongly on sub-pixel abundance and environmental conditions \citep{papageorgiou2024marginal,biermann2020finding}. The open methodological gap for rivers is not the absence of campaigns per se, but the lack of a validated pathway that transfers campaign-derived observability envelopes into operational, uncertainty-aware monitoring products across sites and seasons.
+
+%\paragraph{Citizen science as a scaling and QA/QC layer.}
+%Citizen science has become a central pillar for scaling observations while connecting monitoring to policy and reporting. Key work shows how citizen-science litter data can be validated and integrated into official SDG reporting, providing templates for governance and quality assurance \citep{fraisl2023sdg}. For river systems, crowd-based observations can complement fixed infrastructure and increase temporal coverage, but comparability hinges on harmonized protocols and metadata \citep{vanemmerik2020crowdwater,vanemmerik2023harmonized}. From an AI-native monitoring perspective, the frontier is to use citizen science not only as additional observations, but as a structured source of annotations, episodic event reports, and independent validation signals that can be fused with camera and EO products under traceable uncertainty.
+
+%\paragraph{Bridge and proximal imaging for continuous flux estimates.}
+%Bridge-based camera monitoring has matured into an operationally attractive approach for high-frequency observations at strategic cross-sections. Deep-learning-based detection from fixed cameras has been demonstrated as a scalable alternative to manual counting, enabling continuous time series of floating macrolitter occurrence \citep{vanlieshout2020automated}. However, recent analyses stress that observational uncertainty, site-specific visibility, and protocol choices can dominate errors when converting detections and counts into fluxes \citep{vriend2025uncertainties}. Harmonization efforts therefore emphasize structured workflows to translate heterogeneous camera campaigns into comparable estimates across rivers and time \citep{vanemmerik2023harmonized}. The remaining methodological challenge is to make such proximal streams transferable and uncertainty-calibrated, and to connect them quantitatively to EO-based screening and to hydrologic drivers.
+
+%\paragraph{Earth observation and imaging spectroscopy for synoptic monitoring.}
+%Remote sensing provides the unique opportunity to extend monitoring beyond isolated sites, yet it faces two persistent obstacles: detectability against complex backgrounds and limited, consistent ground validation. Airborne spectroscopy and spectral studies indicate diagnostic plastic features in the visible-to-SWIR range, motivating the use of multi-/hyperspectral sensing (including EnMAP) for detection and material discrimination \citep{garaba2018airborne}. Satellite studies outline both potentials and limits of optical debris detection, highlighting sensitivity to viewing geometry, scene composition, and sub-pixel mixing \citep{martinezvicente2019measuring,hu2021remote}. For riverine settings—small objects, fast motion, and heterogeneous backgrounds—the key gap is an AI-enabled, sensor-aware processing chain that is robust to rare events and domain shift, and that can fuse EO indicators with proximal and in-situ measurements into comparable, uncertainty-aware basin-scale products.
+
+%\paragraph{Deployed catchments as instrumented observatories.}
+%Interception-based systems provide two critical functions: physical capture for composition and mass conversion, and continuous time series that are otherwise rare in large rivers. A prominent example is the long-term Rhine monitoring near Cologne, combining interception with classification supported by citizen scientists and enabling annual macrolitter transport estimates and source attribution \citep{gnann2026river}. Deployed cleanup technologies increasingly pair capture with diagnostics, but peer-reviewed evidence remains fragmented and often complemented by technical reporting \citep{oceancleanup2026smartriversurvey}. Conceptually, the field is shifting from one-off device demonstrations to treating interception sites as instrumented observatories that can anchor calibration and validation for camera- and EO-based methods, including uncertainty propagation from detections to flux and mass-balance reasoning.
+
+%Taken together, the literature provides strong building blocks at each scale, but it still lacks an \emph{AI-native, uncertainty-aware multi-sensor framework} that fuses campaigns, citizen science, proximal imaging, interception observatories, and EO into harmonized basin-scale indicators and flux estimates.
+
+%\paragraph{Preliminary work of the PIs Ru{\ss}wurm and Garaba.}
+Our preliminary work directly targets this integration by developing end-to-end AI methods that connect synoptic Earth observation to decision-relevant river and coastal monitoring products. On the satellite side, we demonstrated large-scale machine learning for marine debris quantification in Sentinel-2 imagery and extended these ideas toward scalable riverine hotspot mapping, focusing on repeatability and deployment rather than one-off case studies \citep{russwurm2023large,perez2025scalable}. To accelerate and standardize expert interpretation and dataset creation, we introduced automated spectral-index search for debris visualization, turning a traditionally manual step into a data-driven component that supports annotation, QA/QC, and rapid screening across sites \citep{van2025samselect}. Complementing this, we investigated bridge-mounted camera monitoring under realistic river conditions (Chao Phraya), including challenging confounders such as water hyacinths, thereby grounding detection models in real-world error modes (Fig.~\ref{fig:plastichyacinths}) \citep{hagenbeek5841770exploring}. In parallel, we established ground-validation evidence for river plastic detectability in and near riverbanks, probing when Sentinel-2 signals are recoverable and when monitoring must rely on closer-range sensing \citep{maathuis5779542exploring}. Together with Garaba's expertise in spectral remote sensing and imaging spectroscopy \citep{garaba2018airborne}, these contributions provide a credible foundation for PLASTRACK to deliver harmonized, uncertainty-aware monitoring across scales.
+
+%Our preliminary work directly operationalizes the state-of-the-art trend toward multi-sensor fusion, by developing end-to-end AI methods that connect synoptic Earth observation to decision-relevant river and coastal monitoring products. On the satellite side, we demonstrated large-scale machine learning for marine debris quantification in Sentinel-2 imagery and extended these ideas toward scalable riverine hotspot mapping, focusing on repeatability and deployment rather than one-off case studies \citep{russwurm2023large,perez2025scalable}. To accelerate and standardize expert interpretation and dataset creation, we further introduced automated spectral-index search for debris visualization, turning a traditionally manual, ad-hoc step into a data-driven component that supports annotation, QA/QC, and rapid screening across sites \citep{van2025samselect}. Collectively, this line of work contributes the “EO layer” of the monitoring stack: consistent large-area screening that can guide where to look more closely with proximal sensors and field campaigns.
+
+%Complementing this, we developed and analyzed proximal monitoring and validation workflows that address exactly the detectability and comparability bottlenecks emphasized in current harmonization efforts. We investigated bridge-mounted camera monitoring in a realistic, high-load tropical river setting (Chao Phraya), including challenging confounders such as water hyacinths, thereby grounding AI detection models in the conditions under which they must operate \citep{hagenbeek5841770exploring}. Figure~\ref{fig:plastichyacinths} illustrates typical observations and bounding-box annotations from this 2025 field campaign, highlighting the visual diversity of items and the complex backgrounds that drive real-world error modes. In parallel, we established ground-validation evidence for river plastic detectability in and near riverbanks, explicitly probing when Sentinel-2 signals are recoverable and when monitoring must rely on closer-range sensing \citep{maathuis5779542exploring}. Together, these contributions close the loop between EO-based screening and field-proven observability, providing a credible foundation for uncertainty-aware, harmonized monitoring across scales.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/Haagenbeek_bounding_boxes.png}
+	\caption{Plastic litter observed in a 2025 campaign at the Chao Phraya River (Bangkok, Thailand) \citepPIRusswurm{hagenbeek5841770exploring} from bridge-mounted RGB cameras.}
+	\label{fig:plastichyacinths}
+\end{figure}
+
+
+\section{Objectives and work program}
+
+\subsection{Anticipated total duration of the project}
+
+\begin{figure}[!h]
+    \centering
+    \fbox{\parbox{0.9\linewidth}{\centering [PLACEHOLDER: Insert Gantt chart figure for marine litter project.]}}
+    \caption{[PLACEHOLDER: Gantt chart caption]}
+    \label{fig:gantt}
+\end{figure}
+
+\subsection{Objectives}
+
+\noindent\textbf{Overarching Aim.}
+[PLACEHOLDER: one-sentence overarching aim.]
+
+\noindent\textbf{Central Hypothesis.}
+[PLACEHOLDER: central, testable hypothesis.]
+
+\subsection{Work program including proposed research methods}
+%For each applicant
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%% BEGIN OF WORK PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%\titlespacing*{\paragraph}{0pt}{-0.2\baselineskip}{0.2\baselineskip}
+%\newcommand\WP{WP\arabic{paragraph}}
+
+%numbered sub-workpackages are supported - just use \subparagraph{}
+\RedeclareSectionCommand[indent=0pt, beforeskip=-3.5ex plus-1ex minus -.2ex,%
+afterskip=2.5ex plus 0.2ex minus 0.2ex]{subparagraph}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+[PLACEHOLDER: Describe cross-work-package evaluation strategy and benchmark logic.]
+
+\subsection*{WP1: [PLACEHOLDER TITLE] (6 months)}
+
+\subsection*{WP2: [PLACEHOLDER TITLE] (Objective 1; 8 months)}
+
+\subsection*{WP3: [PLACEHOLDER TITLE] (Objective 2; 12 months)}
+
+\subsection*{WP4: [PLACEHOLDER TITLE] (Objective 1; 24 months)}
+
+\subsection{Handling of research data}
+[PLACEHOLDER: research data management plan.]
+
+\subsection{Relevance of sex, gender and/or diversity}
+[PLACEHOLDER: diversity and inclusion considerations.]
+
+% Works cited from sections 1 and 2, both by the applicant(s) and by third parties. Please include DOI/URL if available. 
+% A maximum of ten of your own works cited may be highlighted; font at least Arial 9 pt.
+\section{Project- and subject-related list of publications}
+\label{sec:bib}
+\bibliographystyle{plainnat}
+\bibliography{literature}
+
+\backmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  SUPPLEMENT  (new since 04/2022) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Supplementary information on the research context}
+
+\subsection{Ethical and/or legal aspects of the project}
+
+\subsubsection{General ethical aspects}
+
+\subsubsection{Descriptions of proposed investigations involving humans, human materials or identifiable data}
+
+\subsubsection{Descriptions of proposed investigations involving experiments on animals}
+
+\subsubsection{Descriptions of projects involving genetic resources (or associated traditional knowledge) from a foreign country}
+
+\subsubsection{Explanations regarding any possible safety-related aspects}
+
+\subsubsubsection{\enquote{Dual Use Research of Concern}; foreign trade law}
+
+\subsubsubsection{Risks in international cooperation}
+
+\subsubsection{Considerations on aspects of ecological sustainability in the planning and implementation of the project}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  PEOPLE/COLLAB/FUNDING  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Employment status information}
+
+\subsection{First-time proposal data}
+
+\subsection{Composition of the project group}
+
+\subsection{Researchers in Germany with whom you have agreed to cooperate on this project}
+
+\subsection{Researchers abroad with whom you have agreed to cooperate on this project}
+
+\subsection{Researchers with whom you have collaborated scientifically within the past three years}
+% This information will help avoid potential conflicts of interest.
+
+\subsection{Project-relevant cooperation with commercial enterprises}
+%If applicable, please note the EU guidelines on state aid or contract your research institution in this regard.
+
+\subsection{Project-relevant participation in commercial enterprises}
+%Information on connections between the project and the production branch of the enterprise
+
+\subsection{Scientific equipment}
+%List larger instruments that will be available to you for the project. These may include large computer facilities if computing capacity will be needed.
+
+\subsection{Other submissions}
+%List any funding proposals for this project and/or major instrumentation previously submitted to a third party.
+
+\subsection{Other information}
+%Please use this section for any additional information you feel is relevant which has not been provided elsewhere.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  REQUESTED MODULES/FUNDS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Requested modules/funds}
+\subsection{Basic Module}
+
+\subsubsection{Funding for Staff}
+
+\subsubsection{Direct Project Costs}
+
+\subsubsubsection{Equipment up to 10\,000\,\euro, Software and Consumables}
+
+\subsubsubsection{Travel Expenses}
+
+\subsubsubsection{Visiting Researchers \textnormal{(excluding Mercator Fellows)}}
+
+\subsubsubsection{Expenses for Laboratory Animals}
+
+\subsubsubsection{Other Costs}
+
+\subsubsubsection{Project-related publication expenses}
+
+\subsubsection{Instrumentation}
+
+\subsubsubsection{Equipment exceeding 10\,000\,\euro}
+
+\subsubsubsection{Major Instrumentation exceeding 50\,000\,\euro}
+
+\vspace*{2cm}
+
+\subsection{Module Temporary Position for Principal Investigator}
+
+\subsection{Module Replacement Funding}
+
+\subsection{Module Temporary Clinician Substitute}
+
+\subsection{Module Mercator Fellows}
+
+\subsection{Module Workshop Funding}
+
+\subsection{Module Public Relations}
+
+\subsection{Module Standard Allowance for Gender Equality Measures}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SIGNATURE - OPTIONAL BC NOT IN THE ORIGINAL DFG TEMPLATE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Signature}
+
+%\includegraphics[width=0.18\textwidth]{/signatures/signature.pdf}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LoA - OPTIONAL BC NOT IN THE ORIGINAL DFG TEMPLATE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{List of attachments}
+%\begin{itemize}
+%  \item Curriculum Vit\ae
+%\end{itemize}
+
+
+
+\end{document}

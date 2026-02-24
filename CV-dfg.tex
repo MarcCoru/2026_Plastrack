@@ -1,0 +1,134 @@
+\documentclass{scrartcl}
+
+%This CV template is based on the DFG-form 53.200 – 07/25
+% https://www.dfg.de/de/formulare-53-200-elan-246806
+%
+%Author: Oliver Wallscheid, oliver.wallscheid@uni-siegen.de
+%
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{proposal}
+
+% final version -- deactivate all todo notes and showlabels
+\setboolean{finalcompile}{false}
+
+% show DFG template version the current LaTeX template is based on in the header. Will be deactivated when 'finalcompile' is set 'true'
+\ihead*{DFG-form 53.200 - 07/25}
+
+% all config is done in Header.tex
+\input{Header.tex}
+
+\tikzset{notestyleraw/.append style={align= justify}} % justify inline todo notes
+\renewcommand{\baselinestretch}{1.2}  % line spacing 1.2 (according to DFG template requirement)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  CV DFG Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\section*{Curriculum Vitae}
+
+\subsection*{Personal Data}
+    
+\begin{longtable}{|p{0.3\textwidth-2\tabcolsep}|p{0.7\textwidth-2\tabcolsep}|}
+    \hline
+    Title & Dr.-Ing. \\
+    \hline
+    First name & Marc \\
+    \hline
+    Name & Ru\ss{}wurm \\
+    \hline
+    Current position & Assistant Professor (UD2), Tenure Track (Dec 2025) \\
+    \hline
+    Current institution(s)/site(s), country & Wageningen University, The Netherlands \\
+    \hline
+    Identifiers/ORCID & \url{https://orcid.org/0000-0001-6612-5744} \\
+    \hline
+\end{longtable}
+
+\subsection*{Qualifications and Career}
+\begin{longtable}{|p{0.35\textwidth-2\tabcolsep}|p{0.65\textwidth-2\tabcolsep}|}
+    \hline
+    \textbf{Stages} & \textbf{Periods and Details}\\
+    \hline
+    School, country \ifthenelse{\boolean{finalcompile}}{}{\textcolor{red}{required only for the Walter benjamin Programme}} &  \\
+    \hline
+    Degree programme & B.Sc. Geodesy and Geoinformation, Technical University of Munich, Germany (2011--2014)\newline M.Sc. Geodesy and Geoinformation, Technical University of Munich, Germany (2014--2018) \\
+    \hline
+    Doctorate  & Dr.-Ing., 07/2018--02/2022. Defense on 23.02.2022. Supervisor: Dr. Marco K\"orner. Dissertation: ``Data-Driven Feature Learning with Discriminative Models for Satellite Time Series''. Technical University of Munich, Germany. \\
+    \hline
+    Stages of academic/professional career & 02/2026--02/2031 (upcoming): Junior Research Group Leader E14 with right to promote PhD candidates, Institute for Food and Resource Economics, University of Bonn, Germany.\newline 09/2023--02/2026: Assistant Professor (UD2 level), Geo-information Science and Remote Sensing Laboratory, Department of Environmental Sciences, Wageningen University, Netherlands.\newline 09/2021--08/2023: Postdoc/Senior Researcher, Environmental Computational Science and Earth Observation Laboratory (ECEO), \'Ecole Polytechnique F\'ed\'erale de Lausanne (EPFL), Switzerland.\\
+    \hline
+\end{longtable}
+
+\subsection*{Supplementary Career Information}
+Birth of son on June 30th, 2024, followed by 2 months parental leave (July \& August 2024), and since then reduction of working hours from 40 to 32 per week.
+
+First-generation academic in extended family.
+
+Due to family considerations, I will in any case leave the Dutch tenure track in February 2026 and join the University of Bonn (also host institution for the Emmy Noether grant) as Junior Research Group Leader E14. With this change, I will not be Assistant Professor anymore, but will gain the right to directly supervise PhD candidates, which I cannot do now in the Netherlands.
+
+\subsection*{Activities in the Research System}
+\begin{itemize}
+    \item I am the first author of an ICLR 2024 spotlight paper (top 5\%) on geospatial ML, co-authored with Microsoft Research and CU Boulder. It and a related SatCLIP paper (last author) underpin this proposal.
+    \item I lead community building through the ICLR ML4RS workshop series, organizing the 2024 ML4RS edition (72 submissions, EUR 10k sponsorship) and co-organizing the 2025 and 2026 editions.
+    \item I coordinated an MSCA Doctoral Network proposal (15 institutions, 13 countries), demonstrating leadership in cross-disciplinary EU research efforts. Despite not being successfully funded, it scored sufficiently high for a re-submission in the future, as I will explore at the Bonn-internal JPIC conference in February 2026.
+    \item In terms of committee roles, I serve as co-chair of the IAPR TC7 on Remote Sensing \& Mapping and the ISPRS Working Group II/5 on Temporal Geospatial Data Understanding. I am a core member of the ML4RS community and also co-organized the 13th IAPR Workshop on Pattern Recognition in Remote Sensing at ICPR 2024.
+    \item In academic self-governance, I serve on the Program Committee for the MSc in Geo-Information Science at Wageningen University, contributing to curriculum oversight and quality assurance. I am also in the Scientific Committee (Wissenschaftlichen Beirats) of the DAAD--IFI (Internationale Forschungsaufenthalte f\"ur Informatikerinnen \& Informatiker) program that funds international research stays for academics.
+    \item My teaching includes coordinating and lecturing in the Deep Learning course, and contributing to the Machine Learning, Remote Sensing, and Advanced Remote Sensing courses with lectures.
+    \item I am regularly invited to present my work at international venues. Since starting my Assistant Professorship, I have been invited to give on-site talks at the AI \& Environment Summit in Zurich, Switzerland (2025), at the University of Bayreuth, Germany (2025); University of Link\"oping, Sweden (2024); Universidad P\'ublica de Navarra, Spain (2024); the University of Bonn, Germany (2024); Huawei in Paris, France, and GFZ Potsdam, Germany (2023). Upcoming invited talks include the ELLIS Summer School in Jena, Germany (September 2025), the Environment Summit in Zurich, Switzerland (October 2025), and the S\~ao Paulo Advanced School on Machine Learning for Remote Sensing, Brazil (May 2026). I have given three invited online talks at ISPRS TCII online talks series (2025), the SSL4EO summer school (2024), and ImageCLEF/GeolifeCLEF (2023).
+\end{itemize}
+
+\subsection*{Supervision of Researchers in Early Career Phases}
+I currently co-promote two PhD students at Wageningen University (both started in 2024). Please note that in the Dutch academic system, Assistant Professors cannot directly promote PhD candidates and can only serve as co-promoters (``daily supervisors''). Further, I regularly supervise MSc students: currently five students in 2025/2026, six students in 2024/2025 in Wageningen, three students in 2023/2024 in Wageningen, and four previously at EPFL. Among the students most notably, Gabriele Tijnaityte received a Best Wageningen Environmental MSc Thesis Award in 2025 and Corinna Frank received the Best EPFL Thesis Award in 2023 and started a PhD in 2025 at ETH/SLF. Since 2022, I have been the PhD mentor for Max Zollner at TU Munich.
+
+\section*{Scientific Results}
+
+\subsection*{Category A -- Articles in peer-reviewed journals, contributions to peer-reviewed conferences or to anthology volumes, and book publications}
+\begin{enumerate}
+    \item Ru\ss{}wurm, M., Klemmer, K., Rolf, E., Zbinden, R., \& Tuia, D. (2024). Geographic location encoding with spherical harmonics and sinusoidal representation networks. In \textit{The Twelfth International Conference on Learning Representations (ICLR)}. \url{https://dblp.org/rec/conf/iclr/RusswurmKRZT24} (ICLR spotlight, top 5\% of submissions).
+    \item Klemmer, K., Rolf, E., Robinson, C., Mackey, L., \& Ru\ss{}wurm, M. (2025). SatCLIP: Global, general-purpose location embeddings with satellite imagery. In \textit{Proceedings of the AAAI Conference on Artificial Intelligence} (Vol. 39, No. 4, pp. 4347--4355). \url{https://doi.org/10.1609/aaai.v39i4.32457}. \textit{Commentary: Publications 1 \& 2 are preliminary published works for this proposal to establish a new research line on Earth embeddings. Both publications are from an active and ongoing collaboration with K. Klemmer (Microsoft Research). I led the model design of the location encoder (Publication 2), which Konstantin Klemmer trained to obtain the SatCLIP model (Publication 3).}
+    \item Ru\ss{}wurm, M., Wang, S., Kellenberger, B., Roscher, R., Tuia, D. (2024). Meta-learning to address diverse Earth Observation problems across resolutions. \textit{Nature Communications Earth \& Environment}. \url{https://doi.org/10.1038/s43247-023-01146-0}.
+    \item Ru\ss{}wurm, M., Wang, S., K\"orner, M., \& Lobell, D. (2020). Meta-learning for few-shot land cover classification. In \textit{2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)} (pp. 788--796). EarthVision 2020 Best Paper Award. \url{https://doi.org/10.1109/CVPRW50498.2020.00108}. \textit{Commentary: Publications 3 \& 4 describe a methodological research line of meta-learning for remote sensing data, initiated with Sherry Wang during a research stay at Stanford University (Publication 4) and continued during my postdoctoral research at EPFL (Publication 3).}
+    \item Gabeff, V., Ru\ss{}wurm, M., Tuia, D., \& Mathis, A. (2024). WildCLIP: Scene and animal attribute retrieval from camera trap data with domain-adapted vision-language models. \textit{International Journal of Computer Vision}. \url{https://doi.org/10.1007/s11263-024-02026-6}.
+    \item Nguyen, T. A., Ru\ss{}wurm, M., Lenczner, G., \& Tuia, D. (2024). Multi-temporal forest monitoring in the Swiss Alps with knowledge-guided deep learning. \textit{Remote Sensing of Environment}, 305, 114109. \url{https://doi.org/10.1016/j.rse.2024.114109}. \textit{Commentary: Publications 5 \& 6 highlight my supervisory role for PhD students during my postdoctoral research.}
+    \item Ru\ss{}wurm, M., Venkatesa, S. J., \& Tuia, D. (2023). Large-scale detection of marine debris in coastal areas with Sentinel-2. \textit{Cell IScience}, 26(12). \url{https://doi.org/10.1016/j.isci.2023.108402}.
+    \item Mifdal, J., Long\'ep\'e, N., \& Ru\ss{}wurm, M. (2021). Towards detecting floating objects on a global scale with learned spatial features using Sentinel-2. \textit{ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences}, 3, 285--293. \textit{Commentary: Publications 7 \& 8 outline a new application research line of marine litter monitoring that remains active through domain-science collaborations; Publication 8 is my first last-author publication.}
+    \item Ru\ss{}wurm, M., \& K\"orner, M. (2021). Recurrent neural networks and the temporal component. In \textit{Deep Learning for the Earth Sciences}. Editors: Gustau Camp-Valls, Xiaoxiang Zhu, Devis Tuia. \url{https://doi.org/10.1002/9781119646181.ch8}.
+    \item Ru\ss{}wurm, M., K\"orner, M. (2020). Self-attention for raw optical satellite time series classification. \textit{ISPRS Journal of Photogrammetry and Remote Sensing}, 169, 421--435. \url{https://doi.org/10.1016/j.isprsjprs.2020.06.006}. \textit{Commentary: Publications 9 \& 10 present my PhD research with my PhD supervisor M. K\"orner in the form of a book chapter (Publication 9) and a journal paper (Publication 10).}
+\end{enumerate}
+
+\subsection*{Category B -- Any other form of published results}
+\begin{enumerate}
+    \item ``Earth Embeddings: Learning Mental Maps in Neural Nets''. Invited talk on the topic of this proposal at the AI + Environment Summit 2025 in Zurich on 2025-10-01. Video recording available on YouTube (link) with 344 views as of 10.12.2025.
+    \item ``Meta-learning with Meteor'' in \textit{Satellite Image Deep Learning} podcast by Robin Cole. Podcast interview. Available on YouTube (link). 2024-07-04.
+    \item ``Future-proofing with AI -- the academics view -- part 1''. \textit{Plastics Unwrapped} podcast. Podcast interview. Available on Spotify (link). 2025-05-07.
+\end{enumerate}
+
+\subsection*{Academic Distinctions}
+\begin{itemize}
+    \item June 2020 best paper, EarthVision Workshop at CVPR, for ``Meta-Learning for Few-Shot Land Cover Classification''.
+    \item Jan--March 2020: DAAD--IFI stipend for a research stay at Stanford University to work with Sherry Wang and David Lobell, resulting in the publication above.
+    \item Oct 2017 best presentation, NVIDIA Deep Learning Workshop at Leibniz Supercomputing Center (LRZ) in Munich, Germany.
+    \item July 2017 best paper, EarthVision Workshop at CVPR, for ``Temporal Vegetation Modelling using Long Short-Term Memory Networks for Crop Identification from Medium-Resolution Multi-Spectral Satellite Images''.
+\end{itemize}
+
+\section*{Other Information}
+\todo{optional, free text}
+\todo[inline]{%
+Here you can refer to further points that characterise you as an academic or mention other aspects such as dual-career issues (potentially requiring a particular choice of location, for example) which you feel are relevant to the review or evaluation of the proposal.
+}
+
+%% I think this is old, not part of 07/25 template
+
+%\section*{Data protection and consent to the processing of optional data}
+%If you provide voluntary information (marked as optional) in this CV, your consent is required. Please confirm your consent by checking the box below. 
+
+%$[\hspace{0.5cm}]$ \textbf{I expressly consent to the processing of the voluntary (optional) information, including  ``special categories of personal data''\footnote{Special categories of personal data are those ``revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, or trade union membership, and (...) genetic data, biometric data for the purpose of uniquely identifying a natural person, data concerning health or data concerning a natural person's sex life or sexual orientation'' (Article 9(1) GDPR).}  in connection with the DFG's review and decision-making process regarding my proposal.} This also includes forwarding my data to the external reviewers, committee members and, where applicable, foreign partner organisations who are involved in the decision-making process. To the extent that these recipients are located in a third country (outside the European Economic Area), I additionally consent to them being granted access to my data for the above-mentioned purposes, even though a level of data protection comparable to EU law may not be guaranteed. For this reason, compliance with the data protection principles of EU law is not guaranteed in such cases. In this respect, there may be a violation of my fundamental rights and freedoms and resulting damages. This may make it more difficult for me to assert my rights under the General Data Protection Regulation (e.g. information, rectification, erasure, compensation) and, if necessary, to enforce these rights with the help of authorities or in court.
+
+%I may revoke my consent in whole or in part at any time -- with effect for the future, freely and without giving reasons -- vis-à-vis the DFG (\url{postmaster@dfg.de}). The lawfulness of the processing carried out up to that point remains unaffected. Insofar as I transmit ``special categories of personal data'' relating to third parties, I confirm that the necessary legitimation under data protection law exists (e.g. based on consent).
+
+%I have taken note of the DFG's Data Protection Notice relating to research funding, which I can access at \url{www.dfg.de/privacy_policy} and I will forward it to such persons whose data the DFG processes as a result of being mentioned in this CV.
+\end{document}
